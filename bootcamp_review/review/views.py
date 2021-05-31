@@ -29,7 +29,8 @@ class avgreviewDetail(APIView):
 
     def get(self, request, reviewee_email):
         pass
-        print(reviewee_email)
+        import time
+        time.sleep(1)
         re_score = reviewModel.objects.filter(reviewee_email = reviewee_email)
         avg ,cnt = 0,0
         for i in re_score:
