@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'review',
     'rest_framework',
-    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -91,6 +90,7 @@ DATABASES = {
         'USER':'root',
         'PASSWORD':'123456',
         'HOST':'127.0.0.1',
+        'PORT':'3307',
     }
 }
 
@@ -120,27 +120,8 @@ REST_FRAMEWORK = {
 }
 
 
-SWAGGER_SETTINGS = {
-    # 基础样式
-    'SECURITY_DEFINITIONS': {
-        "basic":{
-            'type': 'basic'
-        }
-    },
-    'LOGIN_URL': 'rest_framework:login',
-    'LOGOUT_URL': 'rest_framework:logout',
-    # 'DOC_EXPANSION': None,
-    # 'SHOW_REQUEST_HEADERS':True,
-    # 'USE_SESSION_AUTH': True,
-    # 'DOC_EXPANSION': 'list',
-    # 接口文档中方法列表以首字母升序排列
-    'APIS_SORTER': 'alpha',
-    # 如果支持json提交, 则接口文档中包含json输入框
-    'JSON_EDITOR': True,
-    # 方法列表字母排序
-    'OPERATIONS_SORTER': 'alpha',
-    'VALIDATOR_URL': None,
-}
+
+
 
 
 # Internationalization
