@@ -12,7 +12,7 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from django.http import HttpResponse
-
+from . import redisutil
 
 class JSONResponse(HttpResponse):
     """
@@ -35,8 +35,21 @@ class reviewList(mixins.ListModelMixin,
     def post(self, request, *args, **kwargs):
         # custom logic over ride to use CQGS...
 
-        uname,rank = request.data.get('reviewee_email', ''),  request.data.get('rank', 0)
-        print(uname+str(rank))
+        uname,rank = request.data.get('reviewee_email', ''),  request.data.get('rating', 0)
+        re_score = reviewModel.objects.filter(reviewee_email = uname)
+        avg, cnt = 0, 0
+        for i in re_score:
+            avg += i.rating
+            cnt += 1
+        if cnt == 0:
+            pass
+            res = rank
+        else:
+            pass
+            avg += float(rank)
+            res = avg/(cnt+1)
+        redisutil.setLocalCache(uname, {'average_rating': res })
+
         return self.create(request, *args, **kwargs)
 
 
