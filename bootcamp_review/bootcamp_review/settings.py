@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!xo_hnuvuz^4(psoprmll_e*-6spxq(c$3=%zdy!)1vczp3^v_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'review',
     'rest_framework',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,7 +76,8 @@ WSGI_APPLICATION = 'bootcamp_review.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+import os
+dbhost = os.getenv('MYSQL_HOST', 'host.docker.internal')
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
@@ -89,7 +92,7 @@ DATABASES = {
         'NAME': 'bootcamp_review',
         'USER':'root',
         'PASSWORD':'123456',
-        'HOST':'127.0.0.1',
+        'HOST': dbhost,
         'PORT':'3307',
     }
 }

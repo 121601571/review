@@ -1,10 +1,12 @@
 import redis
 import json
-
+import os
 
 def getCon():
     pass
-    r = redis.Redis(host='localhost', port=6379, db=0)
+    host = os.getenv('REDIS_HOST', 'host.docker.internal')
+
+    r = redis.Redis(host=host , port=6379, db=0)
     return r
 
 con1 = getCon()
